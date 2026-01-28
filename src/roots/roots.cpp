@@ -89,7 +89,7 @@ bool secant(std::function<double(double)> f,
     for (int i = 0;  i < 1e6; i++){
         double denom = f(d)-f(c);
     
-        double dn = d-f(d)*(d-c)/denom;
+        double dn = d-(f(d)*(d-c)/denom);
         c = d;
         d = dn;
 
