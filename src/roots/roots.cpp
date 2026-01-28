@@ -85,9 +85,13 @@ bool secant(std::function<double(double)> f,
             double a, double b, double c,
             double *root)
 {
-    double d = c+1;
-    for ( int i = 0;  i < 1e6; i++){
-        d -= f(d)*(d-c)/(f(d)-f(c));
+    double d = b;
+    for (int i = 0;  i < 1e6; i++){
+        double denom = f(d)-f(c);
+    
+        double dn = d-f(d)*(d-c)/denom;
+        c = d;
+        d = dn;
 
         if (abs(d-c) < tolerance){
             *root = d;
